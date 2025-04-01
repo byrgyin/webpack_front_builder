@@ -15,7 +15,7 @@ export const cssMiniCssExtract = new MiniCssExtractPlugin({
 
 /*-- PUG-TO-HTML CONFIG  --*/
 export const pluginGenerateHtml = new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, './src/pug/pages/index.pug'),
+    template: path.resolve(__dirname, './src/pages/index.pug'),
     filename: 'index.html',
     minify: false,
     inject: true,

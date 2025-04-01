@@ -1,6 +1,32 @@
-$primary-color: red;
+@use "typography";
 
+html{
+  box-sizing: border-box;
+}
+*,
+*:after,
+*:before{
+  box-sizing: inherit;
+}
 body {
-  background-color: $primary-color;
-  color: white;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+input, select {
+  border-radius: 0;
+  box-shadow: none;
+  -webkit-appearance: none;
+}
+a,
+button {
+  outline: none;
+  &:focus {
+    outline: none;
+  }
 }
