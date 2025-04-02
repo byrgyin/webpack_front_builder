@@ -1,5 +1,6 @@
+@use "variables";
+@use "mixins";
 @use "typography";
-
 html{
   box-sizing: border-box;
 }
@@ -30,3 +31,8 @@ button {
     outline: none;
   }
 }
+//@include mixins.tablet-minW(){
+//  *{
+//    display: none;
+//  }
+//}
