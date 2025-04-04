@@ -1,2 +1,3 @@
 mixin style(name)
+  if APP_MODE === 'production'
   link(href=`${name}.css`, rel='stylesheet')

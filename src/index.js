@@ -1,2 +1,2 @@
-import "./styles/style.scss"
-console.log('test')
+import "./styles/style.scss";
+import "./components.js"

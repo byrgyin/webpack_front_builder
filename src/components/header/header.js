@@ -1,1 +1,2 @@
-import "./header.scss"
+import "./header.scss";
+console.log('header');

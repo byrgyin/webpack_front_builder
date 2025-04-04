@@ -3,14 +3,12 @@ import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import path from "node:path";
 
 const __dirname = path.resolve();
-console.log('LOOK AT ME')
-console.log(__dirname);
-console.log('LOOK AT ME')
 
 /*-- CSS CONFIG  --*/
 export const cssMiniCssExtract = new MiniCssExtractPlugin({
-    filename: 'style.css'
+    filename: '[name].css'
 });
+
 /*-- END CSS CONFIG  --*/
 
 /*-- PUG-TO-HTML CONFIG  --*/
