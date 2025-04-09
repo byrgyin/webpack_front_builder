@@ -1,3 +1,3 @@
 import "./hero.scss"
 
-console.log('sdfasdfdsa')
+console.log('hero')

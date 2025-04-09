@@ -14,6 +14,30 @@ export const scssLoaderConfig = {
 /*-- PUG-TO-HTML CONFIG  --*/
 export const pugConfigLoader = {
     test: /\.pug$/,
-    use: ["pug-loader"]
+    use:[
+        {
+            loader: "pug-loader",
+            options: {
+                pretty: true,
+            }
+        }
+    ]
 }
 /*-- END PUG-TO-HTML CONFIG  --*/
+
+/* IMAGES */
+export const imageLoaders = {
+    test: /\.(png|jpg|jpeg|gif|svg)$/i,
+    type: "asset",
+}
+/* END IMAGES */
+
+/* IMAGES */
+export const fontsLoaders= {
+    test: /\.(woff2)$/i,
+    type: "asset/resource",
+    generator: {
+        filename: "fonts/[name][ext]", // Сохраняет шрифты в папку fonts с оригинальным именем
+    },
+}
+/* END IMAGES */

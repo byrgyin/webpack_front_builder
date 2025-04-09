@@ -5,7 +5,7 @@ const __dirname = path.resolve();
 
 const generateEntries = async ()=>{
   const entries = {
-    main: path.resolve(__dirname, "src/index.js"), // Основной входной файл
+    main: path.resolve(__dirname, "src/index.js"),
   };
 
   let componentFiles = glob.sync("src/components/**/*.scss");
@@ -21,7 +21,7 @@ const generateEntries = async ()=>{
       const componentName = path
         .dirname(file)
         .split(path.sep)
-        .pop(); // Берем имя последней папки
+        .pop();
       const entryName = componentName;
 
       if (!entries[entryName]) {

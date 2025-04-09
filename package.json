@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack serve --config webpack.config.js --mode development",
-    "prod": "webpack --config webpack.config.js --mode production",
+    "dev": "cross-env NODE_ENV=development webpack serve --config webpack.config.js --mode development",
+    "prod": "cross-env NODE_ENV=production webpack --config webpack.config.js --mode production",
     "demon": "nodemon main.js"
   },
   "keywords": [],
@@ -15,6 +15,7 @@
   "license": "ISC",
   "devDependencies": {
     "chalk": "^5.4.1",
+    "copy-webpack-plugin": "^13.0.0",
     "css-loader": "^7.1.2",
     "glob": "^11.0.1",
     "html-webpack-plugin": "^5.6.3",
