@@ -14,7 +14,6 @@ const __dirname = path.resolve();
 const componentArg = args[2];
 const componentName = args[3];
 
-
 if (componentArg !== "components") {
   console.error(chalk.red(`Unknown Command ${componentArg}`));
   process.exit(0);
@@ -27,4 +26,43 @@ const componentFolder = path.resolve(
   componentName
 );
 
-console.log(componentFolder)
+const autoAddComponent = path.resolve(
+  __dirname,
+  "src",
+  "components.js"
+);
+
+try {
+  fs.accessSync(componentFolder, fs.constants.F_OK);
+  console.error(chalk.red(`Component ${componentName} already exist`));
+  process.exit(0);
+} catch {
+  fs.mkdirSync(componentFolder);
+}
+
+const imageFolder = path.resolve(componentFolder, "images");
+fs.mkdirSync(imageFolder);
+
+const files = [
+  {
+    name:'js',
+    content: `import './${componentName}.scss';`
+  },
+  {
+    name:'scss',
+    content: `.${componentName}{}`,
+  },
+  {
+    name:'pug',
+    content: `mixin ${componentName}(data)\n  section.${componentName}`
+  },
+]
+
+for (const file of files) {
+  fs.writeFileSync(
+    path.resolve(componentFolder, `${componentName}.${file.name}`),
+    file.content
+  );
+}
+
+fs.writeFileSync(autoAddComponent, `\nimport './components/${componentName}/${componentName}.js';`,{flag:'a'});

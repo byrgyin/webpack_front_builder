@@ -1,3 +1,1 @@
-import "./hero.scss"
-
-console.log('hero')
+import './hero.scss';

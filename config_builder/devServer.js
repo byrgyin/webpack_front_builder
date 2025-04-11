@@ -8,6 +8,6 @@ export const devSeverConfig = {
     hot: true,
     liveReload: true,
     compress: true,
-    historyApiFallback: true,
+    historyApiFallback: false,
     watchFiles: ["src/**/*.pug"]
 }

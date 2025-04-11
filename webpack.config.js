@@ -21,7 +21,7 @@ const config = {
   module: {
     rules: [scssLoaderConfig, pugConfigLoader,imageLoaders,fontsLoaders]
   },
-  plugins: [pluginGenerateHtml, cssMiniCssExtract,CopyFiles],
+  plugins: [...pluginGenerateHtml, cssMiniCssExtract,CopyFiles],
   devServer: devSeverConfig,
 };
 
