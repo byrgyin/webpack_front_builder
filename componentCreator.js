@@ -14,10 +14,15 @@ const __dirname = path.resolve();
 const componentArg = args[2];
 const componentName = args[3];
 
-if (componentArg !== "components") {
+if (componentArg !== "components" && componentArg !== "page") {
   console.error(chalk.red(`Unknown Command ${componentArg}`));
   process.exit(0);
 }
+
+const pagePath = path.resolve(
+  __dirname,
+  "src",
+  "pages");
 
 const componentFolder = path.resolve(
   __dirname,
@@ -32,37 +37,49 @@ const autoAddComponent = path.resolve(
   "components.js"
 );
 
-try {
-  fs.accessSync(componentFolder, fs.constants.F_OK);
-  console.error(chalk.red(`Component ${componentName} already exist`));
-  process.exit(0);
-} catch {
-  fs.mkdirSync(componentFolder);
-}
+if(componentArg === "components" ) {
+  try {
+    fs.accessSync(componentFolder, fs.constants.F_OK);
+    console.error(chalk.red(`Component ${componentName} already exist`));
+    process.exit(0);
+  } catch {
+    fs.mkdirSync(componentFolder);
+  }
 
-const imageFolder = path.resolve(componentFolder, "images");
-fs.mkdirSync(imageFolder);
+  const imageFolder = path.resolve(componentFolder, "images");
+  fs.mkdirSync(imageFolder);
 
-const files = [
-  {
-    name:'js',
-    content: `import './${componentName}.scss';`
-  },
-  {
-    name:'scss',
-    content: `.${componentName}{}`,
-  },
-  {
+  const files = [
+    {
+      name:'js',
+      content: `import './${componentName}.scss';`
+    },
+    {
+      name:'scss',
+      content: `.${componentName}{}`,
+    },
+    {
+      name:'pug',
+      content: `mixin ${componentName}(data)\n  section.${componentName}`
+    },
+  ]
+
+  for (const file of files) {
+    fs.writeFileSync(
+      path.resolve(componentFolder, `${componentName}.${file.name}`),
+      file.content
+    );
+  }
+  fs.writeFileSync(autoAddComponent, `\nimport './components/${componentName}/${componentName}.js';`,{flag:'a'});
+
+} else if (componentArg === "page") {
+  const page = {
     name:'pug',
-    content: `mixin ${componentName}(data)\n  section.${componentName}`
-  },
-]
+    content: `extends ../pug/layout.pug\n\nblock title \n  title ${componentName}\nblock content\n  h1 ${componentName}`,
+  }
 
-for (const file of files) {
   fs.writeFileSync(
-    path.resolve(componentFolder, `${componentName}.${file.name}`),
-    file.content
+    path.resolve(pagePath, `${componentName}.${page.name}`),
+    page.content
   );
 }
-
-fs.writeFileSync(autoAddComponent, `\nimport './components/${componentName}/${componentName}.js';`,{flag:'a'});
