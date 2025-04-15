@@ -22,7 +22,7 @@ if (componentArg !== "components" && componentArg !== "page") {
 const pagePath = path.resolve(
   __dirname,
   "src",
-  "pages");
+  "pages",);
 
 const componentFolder = path.resolve(
   __dirname,
@@ -37,7 +37,7 @@ const autoAddComponent = path.resolve(
   "components.js"
 );
 
-if(componentArg === "components" ) {
+const createComponent = () => {
   try {
     fs.accessSync(componentFolder, fs.constants.F_OK);
     console.error(chalk.red(`Component ${componentName} already exist`));
@@ -51,15 +51,15 @@ if(componentArg === "components" ) {
 
   const files = [
     {
-      name:'js',
+      name: 'js',
       content: `import './${componentName}.scss';`
     },
     {
-      name:'scss',
+      name: 'scss',
       content: `.${componentName}{}`,
     },
     {
-      name:'pug',
+      name: 'pug',
       content: `mixin ${componentName}(data)\n  section.${componentName}`
     },
   ]
@@ -70,16 +70,34 @@ if(componentArg === "components" ) {
       file.content
     );
   }
-  fs.writeFileSync(autoAddComponent, `\nimport './components/${componentName}/${componentName}.js';`,{flag:'a'});
-
-} else if (componentArg === "page") {
-  const page = {
-    name:'pug',
-    content: `extends ../pug/layout.pug\n\nblock title \n  title ${componentName}\nblock content\n  h1 ${componentName}`,
+  fs.writeFileSync(autoAddComponent, `\nimport './components/${componentName}/${componentName}.js';`, {flag: 'a'});
+}
+const createPage = () => {
+  const pageFilePath = path.resolve(pagePath, `${componentName}.pug`);
+  try {
+    fs.accessSync(pageFilePath, fs.constants.F_OK);
+    console.error(chalk.red(`Page ${componentName}.pug already exists`));
+    process.exit(0);
+  } catch {
+    const page = {
+      name: 'pug',
+      content: `extends ../pug/layout.pug\n\nblock title \n  title ${componentName}\nblock content\n  h1 ${componentName}`,
+    }
+    fs.writeFileSync(
+      path.resolve(pagePath, `${componentName}.${page.name}`),
+      page.content
+    );
   }
+}
 
-  fs.writeFileSync(
-    path.resolve(pagePath, `${componentName}.${page.name}`),
-    page.content
-  );
+switch (componentArg) {
+  case "page":
+    createPage();
+    break;
+  case "components":
+    createComponent();
+    break;
+  default:
+    console.error(chalk.red(`Unknown Command ${componentArg}`));
+    process.exit(0);
 }

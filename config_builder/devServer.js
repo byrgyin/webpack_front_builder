@@ -9,5 +9,5 @@ export const devSeverConfig = {
     liveReload: true,
     compress: true,
     historyApiFallback: false,
-    watchFiles: ["src/**/*.pug"]
+    watchFiles: ["src/**/*.{pug,js,scss}"]
 }

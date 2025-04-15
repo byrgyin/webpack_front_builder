@@ -11,7 +11,7 @@ const pages = fs.readdirSync(pageDir).filter(file => file.endsWith('.pug'));
 
 /*-- CSS CONFIG  --*/
 export const cssMiniCssExtract = new MiniCssExtractPlugin({
-  filename: '[name].css',
+  filename: '[name].[contenthash].css',
 });
 
 /*-- END CSS CONFIG  --*/
