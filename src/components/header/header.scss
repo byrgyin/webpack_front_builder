@@ -1,3 +1,9 @@
+@use "../../styles/mixins" as *;
+@use "../../styles/variables" as *;
 .header {
-background: yellow;
+  background: yellow;
+  font-family: $font-family-base;
+  @include mobile-lg-down{
+    display: none;
+  }
 }

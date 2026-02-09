@@ -56,7 +56,7 @@ const createComponent = () => {
     },
     {
       name: 'scss',
-      content: `.${componentName}{}`,
+      content: `@use "../../styles/mixins" as *;\n@use "../../styles/variables" as *;\n.${componentName}{}`,
     },
     {
       name: 'pug',

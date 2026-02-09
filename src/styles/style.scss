@@ -1,6 +1,6 @@
 @use "fonts";
-@use "variables";
-@use "mixins";
+@use "variables" as *;
+@use "mixins" as *;
 @use "typography";
 html{
   box-sizing: border-box;
@@ -11,26 +11,48 @@ html{
   box-sizing: inherit;
 }
 body {
-  margin: 0;
   padding: 0;
-  font-family: variables.$font-family-base;
-  font-size: variables.$font-base-size;
+  min-height: 100vh;
+  font-family: $font-family-base;
+  font-size: $font-base-size;
+  color: $primary-color-1;
+  line-height: $line-height-base;
+  text-rendering: optimizeSpeed;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+body, h1, h2, h3, h4, p, figure, blockquote, dl, dd,ul, ol {
+  margin: 0;
 }
 .container {
   width: 100%;
-  max-width: 100%;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 $container-padding-desktop;
 }
 input, select {
   border-radius: 0;
   box-shadow: none;
   -webkit-appearance: none;
 }
+input, button, textarea, select {
+  font: inherit;
+}
+ul, ol {
+  list-style: none;
+  padding: 0;
+}
 a,
 button {
   outline: none;
   &:focus {
     outline: none;
+  }
+}
+a{
+  text-decoration: none;
+  color: inherit;
+  &:hover{
+    text-decoration: underline;
   }
 }

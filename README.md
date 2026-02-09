@@ -11,6 +11,8 @@ You can run two projects with the command: `npm run dev`
 
 Build a project with the: `npm run prod`
 
+Don't forget to run the `npm link`
+
 To create a component, use the command: `create components {name}`
 
 To create a page, use the command: `create page {name}`

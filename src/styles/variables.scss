@@ -1,13 +1,30 @@
-$large-size:1920px;
-$base-size: 1440px;
-$notebook-base-size: 1280px;
-$tablet:1024px;
-$small-tablet:991px;
-$landscape-mobile:768px;
-$mobile:480px;
+// Desktop & Ultra-Wide
+$breakpoint-uw: 2560px;  // Ultra-wide мониторы (2K)
+$breakpoint-hd: 1920px;  // Full HD мониторы
+$breakpoint-lx: 1600px;  // Большие ноутбуки и мониторы среднего размера
+$breakpoint-lg: 1440px;  // Стандартный десктоп (MacBook Pro 14/15)
+$breakpoint-md: 1336px;  // Самый популярный размер ноутбуков (Windows)
+$breakpoint-sm: 1280px;  // Малые ноутбуки и старые мониторы
+// Tablets
+$breakpoint-tablet-lg: 1024px; // iPad Pro (вертикально) / Планшеты
+$breakpoint-tablet-sm: 991px;  // Точка перехода к мобильному меню (Bootstrap style)
+// Mobile
+$breakpoint-mobile-ls: 767px;  // Горизонтальная ориентация смартфонов
+$breakpoint-mobile-lg: 576px;  // Большие смартфоны
+$breakpoint-mobile-md: 480px;  // Средние смартфоны
+$breakpoint-mobile-sm: 375px;  // iPhone стандарт (самый частый замер для дизайна)
+$breakpoint-mobile-xs: 320px;  // Мини-смартфоны (нижняя граница)
 
+// Margins & Padding
+$container-padding-desktop: 40px;
+$container-padding-mobile: 16px;
+
+// Fonts
 $font-base-size:16px;
+$line-height-base:120%;
 $font-family-base:'Open Sans', sans-serif;
-
+// Color
 $primary-color-1: #000;
+$primary-color-2: #fff;
+$primary-color-3: #ccc;
 $primary-color-1-hover: rgba(0, 0, 0, 0.33);

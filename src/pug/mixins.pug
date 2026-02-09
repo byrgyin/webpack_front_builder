@@ -4,17 +4,24 @@ mixin style(name)
 
 mixin image(obj)
   -
-    let type = obj.src.split('.');
-    type = type[type.length - 1];
+    let type = '';
+    if (obj.src && typeof obj.src === 'string') {
+      let parts = obj.src.split('.');
+      type = parts[parts.length - 1];
+    } else {
+      console.error('Ошибка в миксине image: src не является строкой или не определен.', obj);
+    }
 
   if type === 'svg'
-    if obj.quikLoad
-     img(src=obj.src, alt='alt', class=obj.klassImg, loading="eager")
+    if obj.quickLoad
+      img(src=obj.src, alt='alt', class=obj.klassImg, loading="eager")
     else
       img(src=obj.src, alt='alt', class=obj.klassImg, loading="lazy")
-  else
+  else if (type)
     picture(class=obj.klassPic)
-      if obj.quikLoad
+      if obj.quickLoad
         img(src=obj.src, alt='alt', class=obj.klassImg, loading="eager")
       else
         img(src=obj.src, alt='alt', class=obj.klassImg, loading="lazy")
+  else
+    p(style="color: red;") [Image Error: Invalid source provided]

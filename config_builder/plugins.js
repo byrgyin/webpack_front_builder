@@ -9,14 +9,14 @@ const pageDir = path.resolve(__dirname, './src/pages');
 const pages = fs.readdirSync(pageDir).filter(file => file.endsWith('.pug'));
 
 
-/*-- CSS CONFIG  --*/
+/*-- CSS  --*/
 export const cssMiniCssExtract = new MiniCssExtractPlugin({
   filename: '[name].[contenthash].css',
 });
 
-/*-- END CSS CONFIG  --*/
+/*-- END CSS  --*/
 
-/*-- PUG-TO-HTML CONFIG  --*/
+/*-- PUG-TO-HTML  --*/
 export const pluginGenerateHtml = pages.map(page => {
   const pageName = page.replace('.pug','');
   return new HtmlWebpackPlugin({
@@ -27,9 +27,9 @@ export const pluginGenerateHtml = pages.map(page => {
   })
 });
 
-/*-- END PUG-TO-HTML CONFIG  --*/
-/* COPY FILES */
+/*-- END PUG-TO-HTML  --*/
 
+/* COPY FILES */
 export const CopyFiles = new CopyWebpackPlugin({
   patterns: [
     {
@@ -43,3 +43,4 @@ export const CopyFiles = new CopyWebpackPlugin({
   ]
 });
 /* END COPY FILES */
+export const plugins = [...pluginGenerateHtml, cssMiniCssExtract, CopyFiles];

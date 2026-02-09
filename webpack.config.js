@@ -1,10 +1,7 @@
 import path from "node:path";
-// import dotenv from "dotenv"
-// import chalk from "chalk";
-import {scssLoaderConfig, pugConfigLoader,imageLoaders,fontsLoaders} from "./config_builder/loaders.js";
-import {cssMiniCssExtract, pluginGenerateHtml,CopyFiles} from "./config_builder/plugins.js";
+import {loaders} from "./config_builder/loaders.js";
+import {plugins} from "./config_builder/plugins.js";
 import {devSeverConfig} from "./config_builder/devServer.js";
-// import {generateEntries} from "./config_builder/optimization.js";
 
 const __dirname = path.resolve();
 console.log(process.env.NODE_ENV)
@@ -19,9 +16,9 @@ const config = {
     clean: true,
   },
   module: {
-    rules: [scssLoaderConfig, pugConfigLoader,imageLoaders,fontsLoaders]
+    rules: loaders
   },
-  plugins: [...pluginGenerateHtml, cssMiniCssExtract,CopyFiles],
+  plugins: plugins,
   devtool: process.env.NODE_ENV === "production" ? false : "eval-cheap-source-map",
   devServer: devSeverConfig,
 };

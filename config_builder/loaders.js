@@ -1,17 +1,22 @@
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
-/*-- CSS CONFIG  --*/
+/*-- CSS  --*/
 export const scssLoaderConfig = {
-  test: /\.scss$/,
+  test: /\.(sa|sc|c)ss$/,
   use: [
     process.env.NODE_ENV === "development" ? "style-loader" : MiniCssExtractPlugin.loader,
     'css-loader',
-    'sass-loader'
+    {
+      loader: 'sass-loader',
+      options: {
+        sourceMap: true,
+      },
+    },
   ]
 };
-/*-- END CSS CONFIG  --*/
+/*-- END CSS  --*/
 
-/*-- PUG-TO-HTML CONFIG  --*/
+/*-- PUG-TO-HTML  --*/
 export const pugConfigLoader = {
   test: /\.pug$/,
   use: [
@@ -23,7 +28,7 @@ export const pugConfigLoader = {
     }
   ]
 }
-/*-- END PUG-TO-HTML CONFIG  --*/
+/*-- END PUG-TO-HTML  --*/
 
 /* IMAGES */
 export const imageLoaders = {
@@ -35,7 +40,7 @@ export const imageLoaders = {
 }
 /* END IMAGES */
 
-/* IMAGES */
+/* FONTS */
 export const fontsLoaders = {
   test: /\.(woff2)$/i,
   type: "asset/resource",
@@ -43,4 +48,11 @@ export const fontsLoaders = {
     filename: "fonts/[name][ext]", // Сохраняет шрифты в папку fonts с оригинальным именем
   },
 }
-/* END IMAGES */
+/* END FONTS */
+
+export const loaders = [
+  scssLoaderConfig,
+  pugConfigLoader,
+  imageLoaders,
+  fontsLoaders
+];
